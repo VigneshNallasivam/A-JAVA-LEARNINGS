@@ -1,0 +1,45 @@
+//CREATING CUSTOM EXCEPTION
+
+
+
+
+                                            CREATING CUSTOM EXCEPTION
+											=========================
+STEP 1:CREATE NAME FOR EXCEPTION AND EXTEND IT WITH EXCEPTION CLASS
+======
+public class InvalidUserDetailsException extends Exception 
+{
+    public InvalidUserDetailsException(String message)
+	{
+        super(message);
+    }
+}
+
+STEP 2:USE THE CREATED CUSTOM EXCEPTION INSIDE THE FUNCTION BLOCKS THAT YOU ARE USING
+=======
+public static boolean firstName() throws InvalidUserDetailsException 
+{
+    Matcher firstNameTest = firstName.matcher("GOvardhan");
+    if (firstNameTest.matches() == true)
+	{
+      return true;
+	}
+    else
+	{
+      throw new InvalidUserDetailsException("Invalid first name");
+    }
+}
+
+STEP 3: CAN ALSO USE THAT IN MAIN FUNCTION
+=======
+public static void main(String[] args) throws InvalidUserDetailsException 
+{
+ try 
+ {
+  UserRegistration.firstName();
+ } 
+ catch (InvalidUserDetailsException ex) 
+ {
+  System.out.println("Exception - " + ex);
+ }
+}

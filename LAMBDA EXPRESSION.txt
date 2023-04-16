@@ -1,0 +1,452 @@
+//LAMDA EXPRESSION
+
+                                                                    LAMDA EXPRESSION 
+																	================
+																	
+-A short block of code which takes in parameters and returns a value
+-Also called "Anonymous" or "Un named" method.
+-Lambda expression provides implementation of functional interface. An interface which has only one abstract method is called functional interface.
+-Uses Interface Sometimes
+
+USES:-
+-----
+    =>To provide the implementation of Functional interface.
+    =>Less coding(Mostly Single Line Expressions)
+	
+SYNTAX:-
+-------
+            (argument-list) -> {body}   //  () -> {}
+	Eg:-Imessage msg = () -> {System.out.println("Hello");}
+			
+1) Argument-list : It can be empty or non-empty as well.
+2) Arrow-token   : It is used to link arguments-list and body of expression.
+3) Body          : It contains expressions and statements for lambda expression.
+
+NO PARAMETER:
+    () -> {//Body of no parameter lambda}  
+ONE PARAMETER:
+    (p1) -> {//Body of single parameter lambda}  
+TWO PARAMETER:
+    (p1,p2) -> {//Body of multiple parameter lambda}  
+	
+
+EXAMPLE 1:
+----------
+//WITHOUT LAMBDA USING 'ANONYMOUS CLASS'
+
+    //in file A
+    interface Drawing
+	{  
+        public void draw();  
+    } 
+
+	
+	//in file B
+    public class Sample
+	{  
+        public static void main(String[] args) 
+		{  
+            int width=10;  
+            Drawing x = new Drawing()
+			                { 
+							@Override
+							public void draw()
+							   {
+							   System.out.println("DRAWING...." +width);
+							   }  
+                            };  
+            x.draw();  
+        }  
+    }  
+	
+OUTPUT >>
+DRAWING....  10
+
+EXAMPLE :-
+----------
+//RETURN TYPE ANANYMOUS CLASS FUNCTIONS
+//FILE-A//
+public interface Unit 
+{
+	public String show(String word);
+	public int print(int num);
+}
+
+//FILE-B//
+public class Sample
+{
+	public static void main(String[] args)
+	{
+		Unit obj = new Unit()
+		{
+			public String show(String word)
+			{
+				System.out.println("Hello");
+				return word;
+
+			}
+			public int print(int num)
+			{
+				System.out.println(5);
+				return num;
+			}
+		};
+		System.out.println(obj.show("Hai"));
+		System.out.OUTPUTprintln(obj.print(10));
+	}
+}
+OUTPUT>>
+--------
+Hello
+Hai
+5
+10
+
+EXAMPLE:-
+---------
+//FILE-A//
+public interface demo 
+{
+	public void show();
+	public void print();
+}
+
+//FILE-B//
+public class Sample
+{
+	demo objx = new demo()
+	{
+		public void show()
+		{
+			System.out.println("Hai");
+		}
+		public void print()
+		{
+			System.out.println("Hello");
+		}
+	};
+    public static void main(String[] args)
+    {
+    	Sample obj = new Sample();
+    	obj.objx.show();
+    	obj.objx.print();
+    }
+}
+OUTPUT>>
+--------
+Hai
+Hello
+
+
+EXAMPLE 2:
+----------
+//USING 'LAMBDA'
+
+    //in file A
+    interface Drawing
+	{  
+        public void draw();  
+    } 
+
+	
+	//in file B
+    public class Sample
+	{  
+        public static void main(String[] args) 
+		{  
+            int width=10;  
+            Drawing da = ()->{System.out.println("DRAWING...." +width);};
+			da.draw();
+        }  
+    } 
+
+OUTPUT >>
+DRAWING....  10
+
+EXAMPLE 3:
+----------
+//USING 'LAMBDA' WITH ARRAY LIST & FOR-EACH LOOP 
+import java.util.ArrayList;    
+public class Games 
+{ 
+            public static void main(String[] args) 
+            {  
+            ArrayList<String> list = new ArrayList<String>();  //syntax
+            list.add("Football");  
+            list.add("Cricket");  
+            list.add("Chess");  
+            list.add("Hocky");  
+            System.out.println("HERE ARE SOME GAMES :");
+            System.out.println("---------------------");
+            list.forEach(G->System.out.println(G));  
+          }  
+    
+}
+OUTPUT>>
+HERE ARE SOME GAMES :
+---------------------
+Football
+Cricket
+Chess
+Hocky
+
+EXAMPLE:-
+---------
+//MULTIPLE INTERFACE CREATION FOR IMPLEMENTING MULTIPLE FUNCTION INTERFACE
+//FILE-A//
+public interface Demo 
+{
+	public void show();
+	
+}
+
+//FILE-B//
+public interface Test 
+{
+	public void print();
+
+}
+
+//FILE-C//
+public class Sample
+{
+	public static void main(String[] args)
+	{
+		Demo obj = () -> {System.out.println("hai hello..!"); };
+		obj.show();
+	    
+	    Test objx = () ->{System.out.println("Iam Good");};
+	    objx.print();
+	}
+}
+OUTPUT>>
+--------
+hai hello..!
+Iam Good
+
+EXAMPLE:-
+---------
+//FILE-A//
+import java.lang.FunctionalInterface;
+@FunctionalInterface
+public interface Test 
+{
+	public double value();
+
+}
+
+//FILE-B//
+public class Sample
+{
+	public static void main(String[] args)
+	{
+		Test ref;
+		ref = () -> {return 3.14;};
+		System.out.println("The Value of PI is : " +ref.value());
+	}
+}
+OUTPUT>>
+--------
+The Value of PI is : 3.14
+
+EXAMPLE:-
+---------
+//LAMBDA EXPRESSION USING PARAMETERS
+//FILE-A//
+public interface Test 
+{
+	public String reverse(String str);
+}
+
+//FILE-B//
+public class Sample
+{
+	public static void main(String[] args)
+	{
+		Test ref = (str)->
+		{ String result = "";
+		for(int i=str.length()-1;i>=0;i--)
+		{
+			result = result +str.charAt(i);
+		}
+		return result;
+		};
+		System.out.println("The Reversal of a String Is : "+ref.reverse("Raghav"));
+
+	}
+}
+OUTPUT>>
+--------
+The Reversal of a String Is : vahgaR
+
+EXAMPLE:-
+---------
+//LAMBDA EXPRESSIONS USING GENRICS
+//FILE-A//
+public interface Test<T>
+{
+	public T reverse(T str);
+}
+
+//FILE-B//
+public class Sample<T>
+{
+	public static void main(String[] args)
+	{
+		Test<String> ref = (str)->
+		{ String result = "";
+		for(int i=str.length()-1;i>=0;i--)
+		{
+			result = result +str.charAt(i);
+		}
+		return result;
+		};
+		System.out.println("The Reversal of a String Is : "+ref.reverse("Raghav"));
+	}
+}
+OUTPUT>>
+--------
+The Reversal of a String Is : vahgaR
+
+EXAMPLE:-
+---------
+//TWO PARAMETER PASSING IN LAMBDA EXPRESSIONS
+//FILE-A//
+public interface Test<T>
+{
+	public int add(int a,int b);
+}
+
+//FILE-B//
+public class Sample
+{
+	public static void main(String[] args)
+	{
+		Test ref = (int a,int b)->a+b;//(a,b)->{return (a+b);};
+		System.out.println("The Sum Is : "+ref.add(10,20));
+	}
+}
+OUTPUT>>
+--------
+The Sum Is : 30
+
+
+
+	
+TYPES OF UTILITIES & EXAMPLES:-
+==============================
+FUNCTION (Takes '1' --> Returns '0/p' )
+--------
+import java.util.function.Function;
+//apply()==>Takes one input with any data-type & returns output in any required data-type
+public class Sample
+{
+ public static void main(String[] args)
+ {
+ Function<Integer, Integer> square = (i) -> {return i * i;};
+ System.out.println(square.apply(5));
+ }
+ 
+}
+OUTPUT>>
+25
+
+SUPPLIER (Takes '0' --> Returns '0/p' )
+--------
+import java.util.function.Supplier;
+//get() ==> Takes No input & returns output in any required data-type
+public class Sample
+{
+ public static void main(String[] args)
+ {
+ Supplier<String> obj = () -> {return "hai";};
+ System.out.println(obj.get());
+ }
+ 
+}
+OUTPUT>>
+hai
+
+PREDICATE (Takes '1' --> Returns 'true/false' )
+---------
+import java.util.function.Predicate;
+//test() ==> Takes one input with any data-type & returns true or false
+public class Sample
+{
+ public static void main(String[] args)
+ {
+ Predicate<Integer> obj = (Age) -> Age>=18;
+ System.out.println(obj.test(16));
+ }
+ 
+}
+OUTPUT>>
+false
+
+CONSUMER (Takes '1' --> Returns 'Nothing' )
+--------
+import java.util.function.Consumer;
+//accept() ==> Takes one input with any data-type & returns Nothing
+public class Sample
+{
+ public static void main(String[] args)
+ {
+ Consumer<String> obj = (Name) -> {System.out.println("Hello," +Name);};
+ obj.accept("Vignesh"));
+ }
+ 
+}
+OUTPUT>>
+Hello,Vignesh
+
+BI-FUNCTION (Takes '2' --> Returns '0/p' )
+-----------
+import java.util.function.BiFunction;
+//apply() ==> Takes two inputs with any data-type & returns output in any required data-type
+public class Sample
+{
+ public static void main(String[] args)
+ {
+ BiFunction<Integer, Integer, Integer> obj = (n1,n2) -> n1+n2;
+ System.out.println(obj.apply(6,8));
+ }
+ 
+}
+OUTPUT>>
+14
+
+EXAMPLE:-
+---------
+//SUMMARY OF ABOVE 5 FUNCTIONS IN SINGLE CODING
+import java.util.function.Function;    //(Takes '1' i/p --> Returns '0/p' )        => apply()
+import java.util.function.BiFunction;  //(Takes '2' i/p --> Returns '0/p' )        => apply()
+import java.util.function.Predicate;   //(Takes '1' i/p --> Returns 'true/false' ) => test()
+import java.util.function.Consumer;    //(Takes '1' i/p --> Returns 'Nothing' )    => accept()
+import java.util.function.Supplier;    //(Takes '0' i/p --> Returns '0/p' )        => get()
+public class Sample
+{
+	public static void main(String[] args)
+	{
+		Function<Integer,Integer> obj =(i)->(i*i);
+		System.out.println("The Square Is : "+obj.apply(10));
+		
+		BiFunction<Integer,Integer,Integer> obja =(a,b)->(a*b);
+		System.out.println("The multiplication Is : "+obja.apply(10,20));
+		
+		Predicate<Integer> objb = (Age)->(Age>=18);
+		System.out.println("Voting Eligibility : "+objb.test(25));
+		
+		Consumer<String> objc = (Name) -> {System.out.println("Hello," +Name);};
+		objc.accept("Vignesh");
+		
+		Supplier<String> objd = () -> {return "hai";};
+		System.out.println(objd.get());
+	}
+}
+OUTPUT>>
+--------
+The Square Is : 100
+The multiplication Is : 200
+Voting Eligibility : true
+Hello,Vignesh
+hai

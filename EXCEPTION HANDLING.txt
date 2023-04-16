@@ -1,0 +1,263 @@
+//EXCEPTION HANDLING
+
+                                                           EXCEPTION HANDLING
+														   ==================
+- EXCEPTION =>Unexpected situations which will break normal execution flow of a program.
+- Unexpected situations may be 
+      =>Invalid user input
+      =>Device failure
+      =>Loss of network connection
+      =>Physical limitations (out of disk memory)
+      =>Code errors
+      =>Opening an unavailable file
+- The Parent Class Of all Exceptions is Throwable Class
+	  
+Advantages of Handling Exceptions:
+==================================
+1. Normal flow of program execution will not break.
+2. End user will be informed. (Eg:"Unable to process Please try again later!")
+
+What is Java Optional?
+- The Java Optional is a container for storing a null or non-null value.
+- On top of this, Java Optional provides convenient methods to access the object value, return defaults, 
+  throw exceptions, or perform null checks.
+- If an Optional object does contain a value, we say that it is present; 
+  if it does not contain a value, we say that it is empty.
+
+TYPES OF EXCEPTION:
+==================
+1)CHECKED EXCEPTION    - Checked @ Compile time & Users must handle this  (Eg:-FileNotFoundException)
+2)UN-CHECKED EXCEPTION - Checked @ Runtime & Users can skip handling of it(Eg: Null Pointer Exception i.e.., handled by Java Optional)
+3)ERROR                - Error is irrecoverable. Some example of errors are OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+STACK TRACE:
+============
+-A stack trace is a list of the method calls that the application was in the middle of when an Exception was thrown.
+-A stack trace is a lines of report during the execution of program when exception/error occurs.
+-A stack trace is a report that provides information about program subroutines. It is commonly used for certain kinds of debugging
+
+APPEARENCE OF STACK TRACE:
+--------------------------
+Exception in thread "main" java.lang.Error: Unresolved compilation problem: 
+	The method show(int) in the type Sample is not applicable for the arguments ()
+
+	at hhh.Sample.main(Sample.java:13)
+
+		
+EXCEPTION HANDLING KEYWORDS:
+===========================
+#try	=>The "try" keyword is used to specify a block where we should place an exception code. 
+          It means we can't use try block alone. 
+		  The try block must be followed by either catch or finally.
+		  
+#catch	=>The "catch" block is used to handle the exception. 
+          It must be preceded by try block which means we can't use catch block alone. 
+		  It can be followed by finally block later.
+		  
+#finally =>The "finally" block is used to execute the necessary code of the program. 
+          It is executed whether an exception is handled or not.
+		  
+#throw	 =>The "throw" keyword is used to throw an exception.
+
+#throws	 =>The "throws" keyword is used to declare exceptions. 
+          It specifies that there may occur an exception in the method. 
+		  It doesn't throw an exception. 
+		  It is always used with method signature.
+		 
+COMMON SCENARIOS OF EXCEPTION:
+==============================
+1) A scenario where ArithmeticException occurs 
+   Eg:- 
+   int num = 50/0;
+2) A scenario where NullPointerException occurs
+   Eg:-
+   String s=null;  
+   System.out.println(s.length());
+3) A scenario where NumberFormatException occurs
+   Eg:-
+   String s="abc";  
+   int i=Integer.parseInt(s);
+4) A scenario where ArrayIndexOutOfBoundsException occurs
+   Eg:-
+   int a[]=new int[5];  
+   a[10]=50;
+   
+CODINGS BY USING EXCEPTION HANDLING KEYWORDS:
+=============================================
+Example:-
+---------
+//USING 'try','catch' & 'finally' block
+public class Sample
+{  
+  public static void main(String args[])
+  {  
+  try
+  {  
+   int data=100/0;  
+  }
+  catch(ArithmeticException e)
+  {
+  System.out.println(e);
+  }  
+  finally
+  {
+  System.out.println("Result is: " +data);
+  }
+  System.out.println("rest of the code...");  
+  }  
+}  
+OUTPUT>>
+Exception in thread main java.lang.ArithmeticException:/ by zero
+rest of the code...
+
+Example:-
+---------
+//USING 'throws','throw','try','catch' & 'finally' block
+public class Sample 
+{
+	public static void test(int num) throws ArithmeticException
+	{
+		try
+		{
+		if(num < 0)
+		{
+			System.out.println("Number is -Ve");
+			throw new ArithmeticException("Number is -Ve");
+		}
+		else
+			System.out.println("Number is +Ve");
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			testTest(10);
+		}
+	}
+	public static void testTest(int num)
+	{
+		while(num>0)
+		{
+			System.out.println("The Number Is +Ve");
+			break;
+		}
+		
+	}
+	public static void main(String[] args)
+	{
+		test(-9);
+	}
+}
+OUTPUT>>
+--------
+Number is -Ve
+Number is -Ve
+The Number Is +Ve
+
+
+STACK-TRACE PRINTING OR SHOWING WAYS:-
+======================================
+METHOD-1=>printStackTrace()
+---------------------------
+class Sample
+{
+    public static void main (String[] args) 
+	{
+      int a=5;
+      int b=0;
+        try
+		{
+          System.out.println(a/b);
+        }
+      catch(ArithmeticException e)
+	  {
+        e.printStackTrace();
+      }
+    }
+}
+OUTPUT>>
+java.lang.ArithmeticException: / by zero
+at GFG.main(File.java:10)
+
+METHOD-2=>toString()
+--------------------
+class Sample
+{
+    public static void main (String[] args) 
+	{
+      int a=5;
+      int b=0;
+        try
+		{
+          System.out.println(a/b);
+        }
+      catch(ArithmeticException e)
+	  {
+        System.out.println(e.toString());
+      }
+    }
+}
+OUTPUT>>
+java.lang.ArithmeticException: / by zero
+
+METHOD-3=>getMessage()
+----------------------
+class Sample
+{
+    public static void main (String[] args) 
+	{
+      int a=5;
+      int b=0;
+        try
+		{
+          System.out.println(a/b);
+        }
+      catch(ArithmeticException e)
+	  {
+        System.out.println(e.getMessage());
+      }
+    }
+OUTPUT>>
+/ by zero
+
+Example:-
+---------
+//USING TRY,CATCH,THROW,THROWS,FINALLY IN SAME CODING FOR NULL-POINTER EXCEPTION
+package li;
+public class Sample
+{
+	public static void show() throws NullPointerException
+	{
+		String str = "Hai";
+		try
+		{
+			System.out.println(str);
+			throw new NullPointerException("String Is Null");
+		}
+		catch(NullPointerException ex)
+		{
+			ex.printStackTrace();
+			System.out.println(ex.getMessage());
+			System.out.println(ex.toString());
+		}
+		finally
+		{
+			System.out.println(str);
+		}
+	}
+	public static void main(String[] args)
+	{
+		show();
+	}
+}
+OUTPUT>>
+--------
+Hai
+java.lang.NullPointerException: String Is Null
+	at li.Sample.show(Sample.java:10)
+	at li.Sample.main(Sample.java:25)
+String Is Null
+java.lang.NullPointerException: String Is Null
+Hai

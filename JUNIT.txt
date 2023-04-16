@@ -1,0 +1,186 @@
+//JUNIT
+
+                                                                JUNIT
+																=====
+- Framework with inbuilt classes & methods to write unit test methods.
+- It is an open-source unit testing framework for java programmers.
+- Provides basic and advanced concepts of unit testing in java.
+- Used for Beginners.
+- The org.junit package contains many interfaces and classes for junit testing such as Assert, Test, Before, After etc.
+
+TYPES OF UNIT TESTING:-
+----------------------
+1) Manual Testing     - If you execute the test cases manually without any tool support, it is known as manual testing. 
+                        It is time consuming and less reliable. //other tools that is without JUNIT
+2) Automated Testing  - If you execute the test cases by tool support, it is known as automated testing. 
+                        It is fast and more reliable. //Junit
+						
+ANNOTATIONS:(@) 
+---------------
+- Annotation is a tag that represents the metadata i.e. attached with class, interface, methods or fields 
+- To indicate some additional information which can be used by java compiler and JVM.(Simply used to provide additional information to the program)
+
+Some Examples:-
+--------------
+1. Predefined annotations
+    @Deprecated
+    @Override
+    @SuppressWarnings
+    @SafeVarargs
+    @FunctionalInterface
+2. Custom annotations
+3. Meta-annotations
+    @Retention
+    @Documented
+    @Target
+    @Inherited
+    @Repeatable
+
+TDD(Test Driven Development)      = Write Test methods first & then write code to pass Test methods.
+BDD(Behaviour Driven Development) = Write Code first & then write Test methods to verify code is working as expected.
+
+Two ways to write Junit Test Methods:
+=====================================
+1. Using Jar file     : Add Junit Jar to project.
+2. Using Maven project: Add Junit dependency in (Project Object Model)POM.xml.
+                        It is an XML representation of Maven Project held in a file named pom.xml
+
+ANNOTATIONS USED FOR JUNIT TESTING:
+===================================
+@BeforeClass =>annotation specifies that method will be invoked only once, before starting all the tests.
+@Before      =>annotation specifies that method will be invoked before each test.
+@Test        =>annotation specifies that method is the test method.
+@After       =>annotation specifies that method will be invoked after each test.
+@AfterClass  =>annotation specifies that method will be invoked only once, after finishing all the tests.
+
+METHODS OF ASSERT CLASS:
+=======================
+void assertEquals(boolean expected,boolean actual) = checks that two primitives/objects are equal. It is overloaded. 
+void assertTrue(boolean condition)                 = checks that a condition is true.
+void assertFalse(boolean condition)                = checks that a condition is false.
+void assertNull(Object obj)                        = checks that object is null.
+void assertNotNull(Object obj)                     = checks that object is not null.
+
+DEFAULT IMPORTING UTILITIES:
+============================
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import junit.framework.Assert;
+
+EXAMPLE CODING FOR JUNIT:-
+-------------------------
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;  
+
+public class Computer
+{
+
+ @BeforeClass                                    //annotation specifies that method will be invoked only once, before starting all the tests.
+ public static void Enter()
+ {
+  System.out.println("Logging In...."); 
+ }
+ 
+ @Before                                         //annotation specifies that method will be invoked before each test.
+ public void OpenCalculator()
+ {
+  System.out.println("Opening calcii....");
+ }
+	   
+ @Test                                           //annotation specifies that method is the test method.
+ public void Calculating()
+ {
+   String str = "Calculated Arithmetic Operations";
+   assertEquals("Calculated Arithmetic Operations",str);
+ }
+ 
+ @After                                           //annotation specifies that method will be invoked after each test.
+ public void CloseCalculator()
+ {
+  System.out.println("Closing calcii....");
+ }
+ 
+ @AfterClass                                     //annotation specifies that method will be invoked only once, after finishing all the tests.
+ public static void Exit()
+ {
+  System.out.println("Logging Out....");
+ }
+ 
+}
+
+OUTPUT>>
+
+JUNIT O/P CONSOLE>>
+------------------
+Runs: 1/1  Errors: 0  Failures: 0
+Successful ______________________(Green Bar)
+
+Failure Trace
+Empty 
+
+CONSOLE>>
+---------
+Logging In....
+Opening calcii....
+Closing calcii....
+Logging Out....
+
+PARAMETERIZED TEST
+==================
+-Used to Run Same Test case with different data
+
+EXAMPLE:-
+--------
+import static org.junit.Assert.assertEquals;
+import java.util.Arrays;
+import java.util.Collection;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+@RunWith(Parameterized.class)
+public class AddTest 
+{   
+int num1;
+int num2; 
+int sum;  
+public AddTest(int num1, int num2, int sum) 
+{
+ this.num1 = num1;
+ this.num2 = num2;
+ this.sum = sum;
+}
+@Test
+public void addTest() 
+{
+Calculator cal = new Calculator();
+assertEquals(sum, cal.add(num1, num2));
+}
+.collect(Collectors.toList());
+
+@Parameterized.Parameters
+ public static Collection squareData() 
+ {
+ return Arrays.asList(new Object[][] 
+ {
+             { 2, 2, 4 },
+             { 4, 16, 20 },
+             { 3, 9 , 12},
+             { 7, 49, 56 },
+             { 6, 36, 42 }
+ 
+ });
+
+}
+
+}
+
+
+	

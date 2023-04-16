@@ -1,0 +1,187 @@
+//REGEX-REGULAR EXPRESSIONS
+
+
+                                                                  REGEX-REGULAR EXPRESSIONS
+																  =========================
+															  (import java.util.regex.Pattern;)
+													( REGEX 101 LINK = https://regex101.com/r/H27ZoY/1 )
+
+- A regular expression is a sequence of characters that forms a search pattern.
+- When you search for data in a text, you can use this search pattern to describe what you are searching for.
+- A regular expression can be a single character, or a more complicated pattern.
+//Group of special symbols
+//Validates user input
+
+EXAMPLES OF REGEX IN REAL-TIME:-
+--------------------------------
+=>Password Creation in Gmail
+=>Creation/Usage of Captcha 
+ 
+SYMBOLS
+--------
+  ^               ==> starts with  
+  $               ==> ends with   
+  .               ==> Replaces the character to be Matched
+  *               ==> zero or more  (Mandatory)
+  +               ==> one or more   (Optional)
+  ?               ==> Either zero or one
+[a-z]             ==> matches any character in  a to z (LOWER CASE)
+[A-Z]             ==> matches any character in  A to Z (UPPER CASE)
+[0-9](or)\d       ==> matches any numeric number / any digit
+[a-zA-Z0-9]       ==> matches any aplhanumeric
+{min,max}         ==> used to give range        
+[%#&@.,''::""]    ==> To Mention Special Symbols
+
+ Note: We can use any characters as it is in square bracket
+       Eg: To match space   ==>  [ ]
+           To start with    ==> ^(+91)
+           To match @       ==>  [@]
+
+SYNTAX/FORMULA/STRUCTURE/INGREDIENT/METHOD/FUNCTION/LOGIC FOR Regex IN JAVA:-
+-----------------------------------------------------------------------------
+import java.util.Scanner;
+import java.util.regex.Pattern;
+public class Sample
+{
+    static boolean isValid(String regex, String userInput)
+    {
+       return Pattern.compile(regex).matcher(userInput).matches();
+    }
+	
+    public static void main(String[] args)
+    {
+      Scanner sc = new Scanner(System.in);
+      String <Variable Name for regex Pattern> = "<Type Pattern here>";                                           //regex
+      System.out.println("--Enter What Are you Going To Compare--");
+      String <Variable Name for UserInput> = sc.next();                                                           //userInput
+      System.out.println(isValid(<Variable Name for regex Pattern>, <Variable Name for regex Pattern>));
+    }
+}
+
+OUTPUT>>
+--------
+true / false
+
+EXAMPLE:-
+---------
+//#METHOD-1//
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class Mobile 
+{
+	static boolean isValid(String regex, String userInput)
+	{
+	return Pattern.compile(regex).matcher(userInput).matches();
+	}
+	public static void main(String[] args)
+	{
+	Scanner sc=new Scanner(System.in);
+	String MobNumPattern ="^[0-9]{10}$";
+	System.out.println("ENTER MOBILE NUMBER");
+	String MobNum=sc.next();
+	System.out.println(isValid(MobNumPattern, MobNum));
+	}
+}
+
+OUTPUT>>
+--------
+true 
+
+
+EXAMPLE:-
+---------
+//#METHOD-2//
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public class Sample 
+{
+	public static void main(String[] args)
+	{
+		Pattern pattern = Pattern.compile(".a");
+		Matcher matcher = pattern.matcher("sa");
+		boolean result = matcher.matches();
+		System.out.println("Is User-Input & Regex Pattern for User-Input Are Matching..? : "+result);
+	}
+}
+OUTPUT>>
+--------
+Is User-Input & Regex Pattern for User-Input Are Matching..? : true
+
+
+EXAMPLE:-
+---------
+//#METHOD-3//
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public class Sample 
+{
+	public static void main(String[] args)
+	{
+		boolean result = Pattern.compile("..").matcher("sa").matches();
+		System.out.println("Is User-Input & Regex Pattern for User-Input Are Matching..? : "+result);
+	}
+}
+OUTPUT>>
+--------
+Is User-Input & Regex Pattern for User-Input Are Matching..? : true
+
+
+EXAMPLE:-
+---------
+//#METHOD-4//
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public class Sample 
+{
+	public static void main(String[] args)
+	{
+		boolean result1 =  Pattern.matches("[A-Z]+", "VIGNESHWARAN");
+		System.out.println("Is User-Input & Regex Pattern for User-Input Are Matching..? : "+result1);
+		
+		boolean result2 =  Pattern.matches("[0-9]+", "7339370023");
+		System.out.println("Is User-Input & Regex Pattern for User-Input Are Matching..? : "+result2);
+		
+		boolean result3 =  Pattern.matches("[a-z0-9]*", "vignesh7339370023");
+		System.out.println("Is User-Input & Regex Pattern for User-Input Are Matching..? : "+result3);
+		
+		boolean result4 =  Pattern.matches("[0-9a-z]+", "rocky9566525472");
+		System.out.println("Is User-Input & Regex Pattern for User-Input Are Matching..? : "+result4);
+	}
+}
+OUTPUT>>
+--------
+Is User-Input & Regex Pattern for User-Input Are Matching..? : true
+Is User-Input & Regex Pattern for User-Input Are Matching..? : true
+Is User-Input & Regex Pattern for User-Input Are Matching..? : true
+Is User-Input & Regex Pattern for User-Input Are Matching..? : true
+
+		   
+SIMPLE EXAMPLES:-
+-----------------
+1) REGEX for Phone Numbers:
+   ^[0-9]{10}$  = 7339370023
+   
+   explanation
+    ^    - Start of the string
+   [0-9] - Any digit between 0 to 9
+   {10}  - 10 times
+   $     - End of the string
+   
+2) REGEX for Names:
+   ^[A-Z]{1}[.][A-Z]{1}[a-z]{11}$ = N.Vigneshwaran
+   ^[R][.][A-Z]{1}[a-z]{11}$ = R.Raghavendran
+   explanation
+    ^       - Start of the string
+   [A-Z]{1} - Any Alphabets of Upper Case with minimum one alphabet
+   [.]      - Mentions dot
+   [A-Z]{1} - Any Alphabets of Upper Case with minimum one alphabet
+   [a-z]{11}- Any Alphabets of Lower Case with minimum eleven alphabets
+   $        - End of the string
+                               
+   
+   
+
+
+
+
